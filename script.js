@@ -186,11 +186,9 @@ const showToast = (message) => {
   }, 3400);
 };
 
-// Contact form demo validation
+// Contact form validation before sending
 if (contactForm) {
   contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
     const formData = new FormData(contactForm);
 
     const name = String(formData.get("name") || "").trim();
@@ -198,14 +196,11 @@ if (contactForm) {
     const message = String(formData.get("message") || "").trim();
 
     if (!name || !email || !message) {
+      event.preventDefault();
       showToast("Please complete all fields before sending.");
       return;
     }
 
-    showToast(
-      "Demo message submitted. Connect a real email service before publishing."
-    );
-
-    contactForm.reset();
+    showToast("Sending your message...");
   });
 }

@@ -544,26 +544,54 @@
           </div>
         </div>
 
-        <form class="contact-form reveal" id="contactForm">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" />
-          </div>
+        <form 
+  class="contact-form reveal" 
+  id="contactForm"
+  action="https://formsubmit.co/ashirupraharshana@gmail.com"
+  method="POST"
+>
+  <input type="hidden" name="_subject" value="New message from Ashiru Portfolio" />
+  <input type="hidden" name="_template" value="table" />
+  <input type="hidden" name="_captcha" value="false" />
+  <input type="hidden" name="_next" value="https://ashiru-praharshana.vercel.app/#contact" />
 
-          <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" />
-          </div>
+  <div class="form-group">
+    <label for="name">Your Name</label>
+    <input 
+      type="text" 
+      id="name" 
+      name="name" 
+      placeholder="Enter your name" 
+      required 
+    />
+  </div>
 
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="6" placeholder="Write your message"></textarea>
-          </div>
+  <div class="form-group">
+    <label for="email">Your Email</label>
+    <input 
+      type="email" 
+      id="email" 
+      name="email" 
+      placeholder="Enter your email" 
+      required 
+    />
+  </div>
 
-          <button type="submit" class="btn primary-btn">
-            Send Message <i class="fa-solid fa-paper-plane"></i>
-          </button>
-        </form>
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea 
+      id="message" 
+      name="message" 
+      rows="6" 
+      placeholder="Write your message" 
+      required
+    ></textarea>
+  </div>
+
+  <button type="submit" class="btn primary-btn">
+    Send Message <i class="fa-solid fa-paper-plane"></i>
+  </button>
+</form>
       </div>
     </div>
   </section>
