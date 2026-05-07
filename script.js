@@ -186,9 +186,11 @@ const showToast = (message) => {
   }, 3400);
 };
 
-// Contact form validation before sending
+// Contact form AJAX submission
 if (contactForm) {
-  contactForm.addEventListener("submit", (event) => {
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
     const formData = new FormData(contactForm);
 
     const name = String(formData.get("name") || "").trim();
@@ -196,11 +198,36 @@ if (contactForm) {
     const message = String(formData.get("message") || "").trim();
 
     if (!name || !email || !message) {
-      event.preventDefault();
       showToast("Please complete all fields before sending.");
       return;
     }
 
-    showToast("Sending your message...");
+    const submitButton = contactForm.querySelector("button[type='submit']");
+    const originalButtonText = submitButton.innerHTML;
+
+    submitButton.disabled = true;
+    submitButton.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        showToast("Message sent successfully. Thank you!");
+        contactForm.reset();
+      } else {
+        showToast("Message could not be sent. Please try again.");
+      }
+    } catch (error) {
+      showToast("Network error. Please check your connection.");
+    } finally {
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalButtonText;
+    }
   });
 }
